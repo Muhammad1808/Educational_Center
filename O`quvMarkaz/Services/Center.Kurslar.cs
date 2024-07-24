@@ -7,13 +7,13 @@ public partial class Center
     private List<Kurslar> kurslar = new List<Kurslar>();
 
     string jsonPathKurs = "D:\\OquvMarkaz\\kurslar.json";
+    string path = Directory.GetCurrentDirectory();
+    string coursepath = path + "D:\\OquvMarkaz\\kurslar.json";
+    string applicationpath = path + "D:\\OquvMarkaz\\arizalar.json";
+    string mentorpath=path+"D:\\OquvMarkaz\\mentorlar.json";
+
     public void AddKurs(string name)
     {
-        string path = Directory.GetCurrentDirectory();
-        string coursepath = path + "D:\\OquvMarkaz\\kurslar.json";
-        string applicationpath = path + "D:\\OquvMarkaz\\arizalar.json";
-        string mentorpath=path+"D:\\OquvMarkaz\\mentorlar.json";
-
          int id = kurslar.Count > 0 ? kurslar.Max(k => k.Id) + 1 : 1;
         kurslar.Add(new Kurslar() { Id = id, Name = name });
         string serialized = JsonSerializer.Serialize(kurslar);
