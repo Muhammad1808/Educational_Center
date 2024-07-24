@@ -6,7 +6,7 @@ namespace O_quvMarkaz.Services;
 public partial class Center
 {
     private List<Mentorlar> mentorlar = new List<Mentorlar>();
-    string jsonPathMentor = "D:\\OquvMarkaz\\mentorlar.json";
+    string jsonPathMentor = path + "mentorlar.json";
     public void AddMentor(string name)
     {
         int id = mentorlar.Count > 0 ? mentorlar.Max(m => m.Id) + 1 : 1;
@@ -53,9 +53,16 @@ public partial class Center
     public void ListMentorlar()
     {
         mentorlar = JsonReadMentor();
-        foreach (var mentor in mentorlar)
+        if (mentorlar.Count > 0)
         {
-            Console.WriteLine($"Mentor: {mentor.Id}  , Name: {mentor.Name}");
+            foreach (var mentor in mentorlar)
+            {
+                Console.WriteLine($"Mentor: {mentor.Id}  , Name: {mentor.Name}");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Mentorlar mavjud emas");
         }
     }
     public List<Mentorlar> JsonReadMentor()

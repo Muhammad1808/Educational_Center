@@ -5,7 +5,8 @@ namespace O_quvMarkaz.Services;
 public partial class Center
 {
     private List<Kurslar> kurslar = new List<Kurslar>();
-    string jsonPathKurs = "D:\\OquvMarkaz\\kurslar.json";
+    private static string path = Directory.GetCurrentDirectory();
+    string jsonPathKurs = path + "kurslar.json";
     public void AddKurs(string name)
     {
         int id = kurslar.Count > 0 ? kurslar.Max(k => k.Id) + 1 : 1;
@@ -55,9 +56,16 @@ public partial class Center
     public void ListKurslar()
     {
         kurslar = JsonReadKurs();
-        foreach (var kurs in kurslar)
+        if (kurslar.Count > 0)
         {
-            Console.WriteLine($"Kurs: {kurs.Id}  , Name: {kurs.Name}");
+            foreach (var kurs in kurslar)
+            {
+                Console.WriteLine($"Kurs: {kurs.Id}  , Name: {kurs.Name}");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Kurslar mavjud emas");
         }
     }
     public List<Kurslar> JsonReadKurs()

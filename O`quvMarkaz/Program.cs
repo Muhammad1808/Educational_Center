@@ -44,6 +44,7 @@ public static class Program
         bool back = false;
         while (!back)
         {
+            Console.WriteLine("    Admin    ");
             Console.WriteLine("1. Kurslar");
             Console.WriteLine("2. Mentorlar");
             Console.WriteLine("3. Arizalar");
@@ -58,6 +59,7 @@ public static class Program
                     bool back1 = false;
                     while (!back1)
                     {
+                        Console.WriteLine("    Admin    ");
                         Console.WriteLine("1. Add Kurs");
                         Console.WriteLine("2. Update Kurs");
                         Console.WriteLine("3. Delete Kurs");
@@ -109,6 +111,7 @@ public static class Program
                     bool back2 = false;
                     while (!back2)
                     {
+                        Console.WriteLine("    Admin    ");
                         Console.WriteLine("1. Add Mentor");
                         Console.WriteLine("2. Update Mentor");
                         Console.WriteLine("3. Delete Mentor");
@@ -157,11 +160,13 @@ public static class Program
                     }
                     break;
                 case "3":
+                    Console.WriteLine("    Admin    ");
                     center.ListArizalar();
                     Console.ReadKey();
                     Console.Clear();
                     break;
                 case "4":
+                    Console.WriteLine("    Admin    ");
                     center.About();
                     Console.ReadKey();
                     Console.Clear();
@@ -183,6 +188,7 @@ public static class Program
         bool back = false;
         while (!back)
         {
+            Console.WriteLine("      Student     ");
             Console.WriteLine("1. Kurslar");
             Console.WriteLine("2. Mentorlar");
             Console.WriteLine("3. Arizalar");
@@ -195,16 +201,19 @@ public static class Program
             switch (choice)
             {
                 case "1":
+                    Console.WriteLine("      Student     ");
                     center.ListKurslar();
                     Console.ReadKey();
                     Console.Clear();
                     break;
                 case "2":
+                    Console.WriteLine("      Student     ");
                     center.ListMentorlar();
                     Console.ReadKey();
                     Console.Clear();
                     break;
                 case "3":
+                    Console.WriteLine("      Student     ");
                     bool back1 = false;
                     while (!back1)
                     {
@@ -256,6 +265,7 @@ public static class Program
                     }
                     break;
                 case "4":
+                    Console.WriteLine("      Student     ");
                     center.About();
                     Console.ReadKey();
                     Console.Clear();

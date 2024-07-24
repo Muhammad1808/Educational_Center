@@ -6,11 +6,11 @@ namespace O_quvMarkaz.Services;
 public partial class Center
 {
     private List<Arizalar> arizalar = new List<Arizalar>();
-    string jsonPathAriza = "D:\\OquvMarkaz\\arizalar.json";
-    public void AddAriza(string name,string surname,string phoneNumber)
+    string jsonPathAriza = path + "arizalar.json";
+    public void AddAriza(string name, string surname, string phoneNumber)
     {
         int id = arizalar.Count > 0 ? arizalar.Max(a => a.Id) + 1 : 1;
-        arizalar.Add(new Arizalar() { Id = id, Name = name,SurName=surname,PhoneNumber=phoneNumber });
+        arizalar.Add(new Arizalar() { Id = id, Name = name, SurName = surname, PhoneNumber = phoneNumber });
         string serialized = JsonSerializer.Serialize(arizalar);
         using (StreamWriter writer = new StreamWriter(jsonPathAriza))
         {
@@ -53,9 +53,16 @@ public partial class Center
     public void ListArizalar()
     {
         arizalar = JsonReadAriza();
-        foreach (var ariza in arizalar)
+        if (arizalar.Count > 0)
         {
-            Console.WriteLine($"Ariza: {ariza.Id}  , Name: {ariza.Name}, Surname:{ariza.SurName}, PhoneNumber:{ariza.PhoneNumber}");
+            foreach (var ariza in arizalar)
+            {
+                Console.WriteLine($"Ariza: {ariza.Id}  , Name: {ariza.Name}, Surname:{ariza.SurName}, PhoneNumber:{ariza.PhoneNumber}");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Arizalar mavjud emas");
         }
     }
     public List<Arizalar> JsonReadAriza()
