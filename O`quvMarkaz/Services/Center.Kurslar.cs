@@ -8,16 +8,13 @@ public partial class Center
 
     string jsonPathKurs = "D:\\OquvMarkaz\\kurslar.json";
     string path = Directory.GetCurrentDirectory();
-    string coursepath = path + "D:\\OquvMarkaz\\kurslar.json";
-    string applicationpath = path + "D:\\OquvMarkaz\\arizalar.json";
-    string mentorpath=path+"D:\\OquvMarkaz\\mentorlar.json";
-
+    string coursepath = path + "kurslar.json";
     public void AddKurs(string name)
     {
          int id = kurslar.Count > 0 ? kurslar.Max(k => k.Id) + 1 : 1;
         kurslar.Add(new Kurslar() { Id = id, Name = name });
         string serialized = JsonSerializer.Serialize(kurslar);
-        using (StreamWriter writer = new StreamWriter(jsonPathKurs))
+        using (StreamWriter writer = new StreamWriter(coursepath))
         {
             writer.WriteLine(serialized);
         }
@@ -37,7 +34,7 @@ public partial class Center
         }
 
         string serialized = JsonSerializer.Serialize<List<Kurslar>>(kurslar);
-        using (StreamWriter sw = new StreamWriter(jsonPathKurs))
+        using (StreamWriter sw = new StreamWriter(coursepath))
         {
             sw.WriteLine(serialized);
         }
@@ -53,7 +50,7 @@ public partial class Center
         else
             Console.WriteLine("Kurs not found");
         string serialized = JsonSerializer.Serialize<List<Kurslar>>(kurslar);
-        using (StreamWriter sw = new StreamWriter(jsonPathKurs))
+        using (StreamWriter sw = new StreamWriter(coursepath))
         {
             sw.WriteLine(serialized);
         }
@@ -68,7 +65,7 @@ public partial class Center
     }
     public List<Kurslar> JsonReadKurs()
     {
-        using (StreamReader reader = new StreamReader(jsonPathKurs))
+        using (StreamReader reader = new StreamReader(coursepath))
         {
             string json = reader.ReadToEnd();
             kurslar = JsonSerializer.Deserialize<List<Kurslar>>(json);
