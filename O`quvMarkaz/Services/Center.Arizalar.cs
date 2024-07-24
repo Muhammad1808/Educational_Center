@@ -7,12 +7,13 @@ public partial class Center
 {
     private List<Arizalar> arizalar = new List<Arizalar>();
     string jsonPathAriza = "D:\\OquvMarkaz\\arizalar.json";
+    string applicationpath=path+"arizalar.json";
     public void AddAriza(string name,string surname,string phoneNumber)
     {
         int id = arizalar.Count > 0 ? arizalar.Max(a => a.Id) + 1 : 1;
         arizalar.Add(new Arizalar() { Id = id, Name = name,SurName=surname,PhoneNumber=phoneNumber });
         string serialized = JsonSerializer.Serialize(arizalar);
-        using (StreamWriter writer = new StreamWriter(jsonPathAriza))
+        using (StreamWriter writer = new StreamWriter(applicationpath))
         {
             writer.WriteLine(serialized);
         }
@@ -29,7 +30,7 @@ public partial class Center
             Console.WriteLine("Ariza not found");
         }
         string serialized = JsonSerializer.Serialize<List<Arizalar>>(arizalar);
-        using (StreamWriter sw = new StreamWriter(jsonPathAriza))
+        using (StreamWriter sw = new StreamWriter(applicationpath))
         {
             sw.WriteLine(serialized);
         }
@@ -45,7 +46,7 @@ public partial class Center
         else
             Console.WriteLine("Ariza not found");
         string serialized = JsonSerializer.Serialize<List<Arizalar>>(arizalar);
-        using (StreamWriter sw = new StreamWriter(jsonPathAriza))
+        using (StreamWriter sw = new StreamWriter(applicationpath))
         {
             sw.WriteLine(serialized);
         }
@@ -60,7 +61,7 @@ public partial class Center
     }
     public List<Arizalar> JsonReadAriza()
     {
-        using (StreamReader reader = new StreamReader(jsonPathAriza))
+        using (StreamReader reader = new StreamReader(applicationpath))
         {
             string json = reader.ReadToEnd();
             arizalar = JsonSerializer.Deserialize<List<Arizalar>>(json);
