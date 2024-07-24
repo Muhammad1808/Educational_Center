@@ -5,10 +5,15 @@ namespace O_quvMarkaz.Services;
 public partial class Center
 {
     private List<Kurslar> kurslar = new List<Kurslar>();
+
     string jsonPathKurs = "D:\\OquvMarkaz\\kurslar.json";
     public void AddKurs(string name)
     {
-        int id = kurslar.Count > 0 ? kurslar.Max(k => k.Id) + 1 : 1;
+        string path = Directory.GetCurrentDirectory();
+        string teacherPath = path + "kurslar.json";
+        string coursepath = path + "coures.json";
+
+         int id = kurslar.Count > 0 ? kurslar.Max(k => k.Id) + 1 : 1;
         kurslar.Add(new Kurslar() { Id = id, Name = name });
         string serialized = JsonSerializer.Serialize(kurslar);
         using (StreamWriter writer = new StreamWriter(jsonPathKurs))
