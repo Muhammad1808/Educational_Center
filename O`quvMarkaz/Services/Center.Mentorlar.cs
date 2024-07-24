@@ -7,12 +7,13 @@ public partial class Center
 {
     private List<Mentorlar> mentorlar = new List<Mentorlar>();
     string jsonPathMentor = "D:\\OquvMarkaz\\mentorlar.json";
+    string mentorpath=path+"mentorlar.json";
     public void AddMentor(string name)
     {
         int id = mentorlar.Count > 0 ? mentorlar.Max(m => m.Id) + 1 : 1;
         mentorlar.Add(new Mentorlar() { Id = id, Name = name });
         string serialized = JsonSerializer.Serialize(mentorlar);
-        using (StreamWriter writer = new StreamWriter(jsonPathMentor))
+        using (StreamWriter writer = new StreamWriter(mentorpath))
         {
             writer.WriteLine(serialized);
         }
@@ -29,7 +30,7 @@ public partial class Center
             Console.WriteLine("Mentor not found");
         }
         string serialized = JsonSerializer.Serialize<List<Mentorlar>>(mentorlar);
-        using (StreamWriter sw = new StreamWriter(jsonPathMentor))
+        using (StreamWriter sw = new StreamWriter(mentorpath))
         {
             sw.WriteLine(serialized);
         }
@@ -45,7 +46,7 @@ public partial class Center
         else
             Console.WriteLine("Kurs not found");
         string serialized = JsonSerializer.Serialize<List<Mentorlar>>(mentorlar);
-        using (StreamWriter sw = new StreamWriter(jsonPathMentor))
+        using (StreamWriter sw = new StreamWriter(mentorpath))
         {
             sw.WriteLine(serialized);
         }
@@ -60,7 +61,7 @@ public partial class Center
     }
     public List<Mentorlar> JsonReadMentor()
     {
-        using (StreamReader reader = new StreamReader(jsonPathMentor))
+        using (StreamReader reader = new StreamReader(mentorpath))
         {
             string json = reader.ReadToEnd();
             mentorlar = JsonSerializer.Deserialize<List<Mentorlar>>(json);
